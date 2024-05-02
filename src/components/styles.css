@@ -1,0 +1,15 @@
+ul {
+  display: grid;
+  justify-content: center;
+  gap: 1em;
+}
+ul li {
+  list-style: none;
+  width: 70vw;
+  background-color: goldenrod;
+}
+ul li .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}/*# sourceMappingURL=styles.css.map */
