@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Data from "../Datas/Data";
+import Data from "../../Datas/Data";
 import "./styles.css";
 
 function Accordion() {
@@ -17,9 +17,6 @@ function Accordion() {
         ? setSelectedItem(selectedItems.filter((a) => a != id))
         : setSelectedItem([...selectedItems, id]);
     } else selected === id ? setSelected(null) : setSelected(id);
-    // setSelectedItem([...selectedItems]);
-    // : selectedItems.push(id);
-    console.log(selectedItems, typeof selectedItems);
   };
   return (
     <div>
