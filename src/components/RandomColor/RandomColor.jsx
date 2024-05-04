@@ -91,7 +91,7 @@ function RandomColor() {
             cursor: "pointer",
           }}
         >
-          switch to {colorType[0]}
+          switch to {colorType[1]}
         </button>
         <button
           onClick={handleChangeColor}
@@ -107,7 +107,7 @@ function RandomColor() {
           Generate Random colour
         </button>
       </div>
-      <h3>Colour in {colorType[1]} mode</h3>
+      <h3>Colour in {colorType[0]} mode</h3>
       <h1 style={{ color: fontColor }}>{color}</h1>
       <CopyToClipboard color={color} />
     </div>
