@@ -19,18 +19,48 @@ function Accordion() {
     } else selected === id ? setSelected(null) : setSelected(id);
   };
   return (
-    <div>
-      <button onClick={selectionClick}>Set {selectionType[0]} selection</button>
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundColor: "#54242a",
+        color: "white",
+        padding: "1em",
+      }}
+    >
+      <button
+        onClick={selectionClick}
+        style={{
+          backgroundColor: "#54242a",
+          color: "white",
+          padding: "0.5em",
+          borderRadius: "0.5em",
+          border: "2px solid black",
+          cursor: "pointer",
+        }}
+      >
+        Set {selectionType[0]} selection
+      </button>
       <h1>Accordion</h1>
       <p>This is an Accordion component in {selectionType[1]} selection mode</p>
       <ul>
         {Data.map((ele) => (
           <li key={ele.id} className={"item_" + ele.id}>
-            <div className="title" onClick={() => HandleListClick(ele.id)}>
+            <div
+              className="title"
+              onClick={() => HandleListClick(ele.id)}
+              style={{}}
+            >
               <h2>{ele.title}</h2>
               <span>+</span>
             </div>
-            <div className="content">
+            <div
+              className="content"
+              style={{
+                backgroundColor: "#da8138s",
+                color: "black",
+                // padding: "0.5em",
+              }}
+            >
               {selectionType[0] === "Single" ? (
                 <p>{selectedItems.includes(ele.id) ? ele.content : null}</p>
               ) : (
