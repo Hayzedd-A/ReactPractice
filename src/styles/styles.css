@@ -1,0 +1,188 @@
+.accordion ul {
+  display: grid;
+  justify-content: center;
+  gap: 1em;
+}
+.accordion ul li {
+  list-style: none;
+  width: 70vw;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: 2px solid #b96a15;
+  overflow: hidden;
+  border-radius: 2em;
+  background-color: #54242a;
+  transition: all 0.3s ease-in-out;
+}
+.accordion ul li .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+}
+.accordion ul li .content p {
+  padding-bottom: 0.5em;
+  margin: 0;
+  color: white;
+  font-size: 1em;
+  line-height: 20px;
+  text-align: center;
+}
+
+.randomColor {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-family: sans-serif;
+  gap: 1em;
+}
+
+.starRating {
+  height: 100vh;
+  background-color: #6be26e;
+  color: black;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+.starRating .emoji {
+  fill: orange;
+}
+
+.imageSlider {
+  background-color: #f6f5bf;
+  padding: 1em 0.5em;
+  height: 100vh;
+}
+.imageSlider h1 {
+  margin-top: 0;
+}
+.imageSlider .imageContainer .imageList {
+  display: flex;
+  gap: 0.5em;
+  overflow-x: auto;
+  padding: 0 2em;
+}
+.imageSlider .imageContainer .imageList span {
+  display: inline-block;
+  height: 100%;
+}
+.imageSlider .imageContainer .imageList span.active {
+  border: 2px solid gray;
+  padding: 0.1em;
+}
+.imageSlider .imageContainer .icons {
+  padding: 0.5em 0;
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+}
+
+.productLoading {
+  min-height: 100vh;
+  padding: 1em 0.5em;
+}
+.productLoading nav {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+}
+.productLoading .productList {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5em;
+  padding: 1em 0.5em;
+}
+.productLoading .productList .product {
+  background-color: rgb(236, 236, 236);
+  padding: 0.3em;
+  border-radius: 0.3em;
+}
+.productLoading .productList .product:hover {
+  scale: 1.1;
+  box-shadow: 3px 4px 5px 8px rgba(123, 122, 122, 0.7);
+}
+.productLoading .productList .product:hover img:hover {
+  transform: scaleY(1.5);
+  transform-origin: top;
+}
+.productLoading .productList .product:active {
+  scale: 1;
+}
+.productLoading .descriptionBackground {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(236, 236, 236, 0.8);
+}
+.productLoading .description {
+  position: absolute;
+  background-color: rgb(248, 248, 248);
+  width: 85vw;
+  height: 80vh;
+  left: 50%;
+  box-shadow: 0px 0px 9px 8px rgb(198, 191, 191);
+  border-radius: 1em;
+  translate: -50%;
+  display: grid;
+  gap: 0.5em;
+  justify-content: center;
+}
+.productLoading .description .closeIcon {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  font-size: 1.5em;
+  fill: rgb(192, 36, 36);
+  cursor: pointer;
+}
+.productLoading .description h1,
+.productLoading .description h4 {
+  margin: 0;
+}
+.productLoading .description .descriptionImages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex-wrap: nowrap;
+  overflow: auto;
+}
+.productLoading .description .price {
+  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 3em;
+}
+.productLoading button.getMore {
+  border: 2px solid #6be26e;
+  padding: 0.5em 1em;
+  border-radius: 0.4em;
+  font-size: larger;
+  cursor: pointer;
+}
+.productLoading button.getMore.noMore {
+  border: 2px solid rgb(192, 36, 36);
+  color: rgb(192, 36, 36);
+  cursor: not-allowed;
+}
+.productLoading button.getMore:disabled {
+  background-color: rgb(192, 36, 36);
+  color: white;
+  cursor: not-allowed;
+}
+.productLoading button.getMore:hover:not(.noMore) {
+  background-color: #056f08;
+  color: white;
+}
+.productLoading button.getMore:active:not(.noMore) {
+  scale: 0.9;
+}/*# sourceMappingURL=styles.css.map */

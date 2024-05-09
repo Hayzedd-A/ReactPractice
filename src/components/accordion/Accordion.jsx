@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Data from "../../Datas/Data";
-import "./styles.css";
+import "../../styles/styles.css";
 
 function Accordion() {
   let [selectionType, setSelectionType] = useState(["Multiple", "Single"]);
   let [selected, setSelected] = useState(null);
   let [selectedItems, setSelectedItem] = useState([]);
+  let [newHeight, setnewHeight] = useState("");
 
   const selectionClick = () => {
     let [a, b] = selectionType;
@@ -14,12 +15,14 @@ function Accordion() {
   const HandleListClick = (id) => {
     if (selectionType[0] === "Single") {
       selectedItems.includes(id)
-        ? setSelectedItem(selectedItems.filter((a) => a != id))
+        ? setSelectedItem(selectedItems.filter((a) => a !== id))
         : setSelectedItem([...selectedItems, id]);
     } else selected === id ? setSelected(null) : setSelected(id);
+    setnewHeight("max-content");
   };
   return (
     <div
+      className="accordion"
       style={{
         minHeight: "100vh",
         backgroundColor: "#54242a",
@@ -44,7 +47,13 @@ function Accordion() {
       <p>This is an Accordion component in {selectionType[1]} selection mode</p>
       <ul>
         {Data.map((ele) => (
-          <li key={ele.id} className={"item_" + ele.id}>
+          <li
+            key={ele.id}
+            className={"item_" + ele.id}
+            style={{
+              height: newHeight,
+            }}
+          >
             <div
               className="title"
               onClick={() => HandleListClick(ele.id)}
@@ -53,14 +62,7 @@ function Accordion() {
               <h2>{ele.title}</h2>
               <span>+</span>
             </div>
-            <div
-              className="content"
-              style={{
-                backgroundColor: "#da8138s",
-                color: "black",
-                // padding: "0.5em",
-              }}
-            >
+            <div className="content">
               {selectionType[0] === "Single" ? (
                 <p>{selectedItems.includes(ele.id) ? ele.content : null}</p>
               ) : (

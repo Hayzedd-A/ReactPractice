@@ -27,6 +27,9 @@
 .App-link {
   color: #61dafb;
 }
+.starRating .active {
+  fill: orange;
+}
 
 @keyframes App-logo-spin {
   from {
@@ -35,4 +38,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+body {
+  overflow-x: hidden;
 }

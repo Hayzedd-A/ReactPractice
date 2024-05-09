@@ -3,8 +3,8 @@ import CopyToClipboard from "../CopyToClipboard";
 
 function RandomColor() {
   let [colorType, setColorType] = useState(["hex", "rgb"]);
-  let [color, setColor] = useState("#23f2af");
-  let [fontColor, setFontColor] = useState("#000000");
+  let [color, setColor] = useState("#65cf9c");
+  let [fontColor, setFontColor] = useState("#ffffff");
 
   function isColorDark(Color) {
     let r, g, b;
@@ -60,17 +60,10 @@ function RandomColor() {
 
   return (
     <div
+      className="randomColor"
       style={{
-        height: "100vh",
         backgroundColor: color,
         color: fontColor,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        fontSize: "2rem",
-        fontFamily: "sans-serif",
-        gap: "1em",
       }}
     >
       <div
