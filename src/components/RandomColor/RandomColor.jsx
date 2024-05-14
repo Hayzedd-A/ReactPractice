@@ -1,10 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CopyToClipboard from "../CopyToClipboard";
 
 function RandomColor() {
+
+  
+
   let [colorType, setColorType] = useState(["hex", "rgb"]);
-  let [color, setColor] = useState("#65cf9c");
+  let [color, setColor] = useState(() => {
+    let localColor = localStorage.getItem("color")
+    return localColor ? JSON.parse(localColor)[0] : "#65cf9c"
+  });
   let [fontColor, setFontColor] = useState("#ffffff");
+  let prevColor = useRef(() => {
+    let localColor = localStorage.getItem("color")
+    return localColor ? JSON.parse(localColor)[1] : false
+  });
+  
+  
+  useEffect (() => {
+    setFontColor(!isColorDark(color) ? "#000000" : "#ffffff");
+    localStorage.setItem("color", JSON.stringify([color, prevColor.current()]));
+  },[color])
 
   function isColorDark(Color) {
     let r, g, b;
@@ -47,15 +63,12 @@ function RandomColor() {
   };
 
   const handleChangeColor = () => {
+    prevColor.current = () => {return color}
     if (colorType[0] === "hex") {
       setColor(generateRandomHex(6));
     } else {
       setColor(generateRandomRGB());
     }
-    setColor((prevColor) => {
-      setFontColor(!isColorDark(prevColor) ? "#000000" : "#ffffff");
-      return prevColor;
-    });
   };
 
   return (
@@ -86,6 +99,7 @@ function RandomColor() {
         >
           switch to {colorType[1]}
         </button>
+        <button onClick={() => {setColor(prevColor.current())}} disabled={prevColor.current() ? false : true}>previous color</button>
         <button
           onClick={handleChangeColor}
           style={{

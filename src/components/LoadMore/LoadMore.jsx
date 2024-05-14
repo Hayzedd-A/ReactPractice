@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { groupBy } from "underscore";
 import { FaWindowClose } from "react-icons/fa";
 
 function LoadMore() {
   let [skip, setSkip] = useState(0);
   let [productData, setProductData] = useState([]);
+  let [loading, setLoading] = useState(false);
   let [selectedProduct, setSelectedProduct] = useState(null);
   let [categorizedData, setCategorizedData] = useState(null);
   let [selectedCategory, setSelectedCategory] = useState("all");
   let [sortingMode, setSortingMode] = useState("Ascending");
+  let [error, setError] = useState(null);
   async function getProducts() {
     try {
       const response = await fetch(
@@ -19,11 +21,24 @@ function LoadMore() {
       setProductData([...productData]);
       categorizeProduct();
       console.log(productData);
+      setLoading(false);
+      setSkip(skip + 20);
     } catch (error) {
-      console.log(error);
+      setError(error);
+      setTimeout(() => {
+        setError(null);
+        setLoading(false);
+        console.log("timeout completed");
+      }, 5000);
     }
   }
 
+  useEffect(() => {
+    setTimeout(() => {
+      setError(null);
+      setLoading(false);
+    }, 5000);
+  }, [error]);
   const categorizeProduct = () => {
     const categorizedResult = groupBy(productData, "category");
     setCategorizedData(categorizedResult);
@@ -36,8 +51,38 @@ function LoadMore() {
   };
 
   const getMoreProducts = () => {
+    setLoading(true);
     getProducts();
-    setSkip(skip + 20);
+  };
+
+  const errorDiv = () => {
+    return (
+      <div
+        className="errorContainer"
+        style={{
+          position: "fixed",
+          top: "-8em",
+          top: error ? "1em" : "-8em",
+        }}
+      >
+        <p>
+          <h3>An error occured while fetching the data!</h3>
+          check your internet settings
+        </p>
+      </div>
+    );
+  };
+
+  const image = (thumbnail, title) => {
+    return (
+      <img
+        loading="lazy"
+        src={thumbnail}
+        width={180}
+        height={180}
+        alt={title}
+      />
+    );
   };
 
   const sortProducts = () => {
@@ -61,6 +106,7 @@ function LoadMore() {
 
   return (
     <div className="productLoading">
+      {error ? errorDiv() : null}
       <h1>Load More Products</h1>
       <nav>
         <label htmlFor="category">Select category of Products:</label>
@@ -120,12 +166,7 @@ function LoadMore() {
                     onClick={() => handleProductClick(product.id)}
                     key={product.id}
                   >
-                    <img
-                      src={product.thumbnail}
-                      width={180}
-                      height={180}
-                      alt={product.title}
-                    />
+                    {image(product.thumbnail, product.title)}
                     <h3>{product.title}</h3>
                     <h4>{"$" + product.price}</h4>
                   </div>
@@ -142,12 +183,7 @@ function LoadMore() {
                       onClick={() => handleProductClick(product.id)}
                       key={product.id}
                     >
-                      <img
-                        src={product.thumbnail}
-                        width={180}
-                        height={180}
-                        alt={product.title}
-                      />
+                      {image(product.thumbnail, product.title)}
                       <h3>{product.title}</h3>
                       <h4>{"$" + product.price}</h4>
                     </div>
@@ -157,9 +193,13 @@ function LoadMore() {
         <button
           className={skip <= 80 ? "getMore loadMore" : "getMore noMore"}
           onClick={getMoreProducts}
-          disabled={skip <= 80 ? false : true}
+          disabled={skip >= 80 || loading ? true : false}
         >
-          {skip <= 80 ? "Load More Products" : "No more Products"}
+          {loading
+            ? "Loading..."
+            : skip <= 80
+            ? "Load More Products"
+            : "No more Products"}
         </button>
       </div>
     </div>
