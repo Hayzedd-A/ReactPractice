@@ -25,8 +25,8 @@ function ImageSlider() {
       image.imageData[currentIndex].id,
       image.imageData[currentIndex].download_url,
     ]);
-    if (activeRef.current)
-      activeRef.current.scrollIntoView({ behavoir: "smooth" });
+    // if (activeRef.current)
+    // activeRef.current.scrollIntoView({ behavoir: "smooth" });
   };
 
   const nextTrackImage = () => {
@@ -42,8 +42,8 @@ function ImageSlider() {
       image.imageData[currentIndex].id,
       image.imageData[currentIndex].download_url,
     ]);
-    if (activeRef.current)
-      activeRef.current.scrollIntoView({ behavoir: "smooth" });
+    // if (activeRef.current)
+    //   activeRef.current.scrollIntoView({ behavoir: "smooth" });
   };
 
   return (
