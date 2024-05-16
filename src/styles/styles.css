@@ -281,6 +281,7 @@
 
 .scrollIndicator {
   position: fixed;
+  z-index: 3;
   width: 100%;
   height: 0.6em;
 }
@@ -297,4 +298,36 @@
 .scrollIndicator hr.current {
   background-color: #023604;
   width: 0;
+}
+
+.TabView .navButton {
+  position: fixed;
+  top: 0.6em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: rgb(104, 58, 63);
+}
+.TabView .navButton span {
+  cursor: pointer;
+  color: white;
+  padding: 1em 2em;
+  border-radius: 8px 8px 0 0;
+  box-sizing: border-box;
+}
+.TabView .navButton span.active {
+  background-color: rgb(84, 36, 42);
+  z-index: 2;
+  box-shadow: 0 -3px 7px 2px rgb(79, 77, 77);
+}
+.TabView .navButton span:hover {
+  border: 2px solid rgb(84, 36, 42);
+  border-top: 0;
+  border-bottom: 0;
+  z-index: 2;
+  box-shadow: 0 -3px 7px 2px rgb(79, 77, 77);
+}
+.TabView .mainBody {
+  padding: 3.4em 0 0;
 }/*# sourceMappingURL=styles.css.map */
